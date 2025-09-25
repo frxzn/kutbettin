@@ -3,59 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tebrikler Kutbettin!</title>
+  <title>Kutbettin Kazandı!</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #ffe259, #ffa751);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #000000, #111111);
       height: 100vh;
+      font-family: 'Orbitron', sans-serif;
+      color: #f1c40f;
       overflow: hidden;
-    }
-
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       text-align: center;
-      max-width: 400px;
-      animation: pop 1s ease;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
     }
 
     h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-      color: #ff6f00;
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #f39c12;
+      text-shadow: 0 0 20px #ffcc00, 0 0 30px #ff0000;
+      animation: glow 1.5s ease-in-out infinite alternate;
     }
 
-    p {
-      font-size: 18px;
-      color: #333;
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #ffffffbb;
     }
 
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: red;
-      top: 0;
-      animation: fall 3s linear infinite;
-      opacity: 0.7;
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid #f39c12;
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 20px #f39c12aa;
+      max-width: 600px;
+      animation: float 3s ease-in-out infinite;
     }
 
-    @keyframes fall {
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12;
+      }
       to {
-        transform: translateY(100vh) rotate(360deg);
+        text-shadow: 0 0 20px #f1c40f, 0 0 30px #ff0000;
+      }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .firework {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: red;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(4);
         opacity: 0;
       }
     }
@@ -64,22 +90,28 @@
 <body>
 
   <div class="card">
-    <h1>🎉 Tebrikler Kutbettin!</h1>
-    <p>2025 Sınıf Temsilcisi Seçimini Kazandın! 👏<br>
-    Başarılar dileriz, sınıf seninle gurur duyuyor! 🧠💪</p>
+    <h1>🔥 KUTBETTİN KAZANDI 🔥</h1>
+    <h2>Cizre MYO | Bilgisayar Programcılığı</h2>
+    <p style="font-size: 18px; color: #ddd;">
+      Sınıf temsilciliği seçimlerinde destan yazan<br><strong>KUTBETTİN</strong>, sandıkları patlatarak <br>ZAFERİN TEK ADI OLDU! 💪👑<br><br>
+      👏 Tebrikler Kral. Artık lider sensin. 👏
+    </p>
   </div>
 
   <script>
-    // Konfeti efekti
-    const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#f00', '#00f'];
-    for (let i = 0; i < 100; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-      document.body.appendChild(confetti);
+    // Havai fişek efekti
+    function createFirework() {
+      const firework = document.createElement('div');
+      firework.classList.add('firework');
+      firework.style.left = Math.random() * 100 + 'vw';
+      firework.style.top = Math.random() * 100 + 'vh';
+      firework.style.backgroundColor = ['#f1c40f', '#e74c3c', '#3498db', '#9b59b6'][Math.floor(Math.random()*4)];
+      firework.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+      document.body.appendChild(firework);
+      setTimeout(() => firework.remove(), 1000);
     }
+
+    setInterval(createFirework, 200);
   </script>
 
 </body>
